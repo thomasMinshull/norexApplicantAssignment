@@ -1,7 +1,7 @@
 class CreateStatusUpdates < ActiveRecord::Migration
   def change
     create_table :status_updates do |t|
-    	t.references :user_tables #adds a foriegn key that references the user_table
+    	t.references :users #adds a foriegn key that references the users table
     	t.string "status", :limit => 500
     	t.timestamps null: false
     end

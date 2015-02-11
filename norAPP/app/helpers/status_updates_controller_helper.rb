@@ -1,0 +1,2 @@
+module StatusUpdatesControllerHelper
+end
