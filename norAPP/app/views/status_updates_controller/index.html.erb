@@ -1,2 +1,28 @@
-<h1>StatusUpdatesController#index</h1>
-<p>Find me in app/views/status_updates_controller/index.html.erb</p>
+
+<%# needs some way to set thisUser as the user who just logged in %>
+<%= form_for(:status_update, :url => {:action => 'create'}) do |f| %>
+	<table>
+		<tr>
+			<th>What's going on???</th>
+			<td><%=f.text_field(:status) %><td>
+		</tr>
+	</table>
+	<div class="form-buttons">
+		<%= submit_tag("Publish") %>
+
+<%# 	<table>
+<%#		<% @status_updates.each do |status_update| %>
+<%#		<tr>
+<%#			<td><%= status_update.user_name %></td>
+<%#			<td><%= status_update.status %></td>
+<%#			<td><% x = false 
+<%#			# x = true if logged_in_user == status_update.user_name 
+<%#			 %>
+<%#				<%= button_to "edit", {action: "edit"} %>
+<%#			</td>
+<%#		</tr>
+<%#		<% end %> 
+<%#		
+<%#	</table>	%>
+	</div>
+<% end %>

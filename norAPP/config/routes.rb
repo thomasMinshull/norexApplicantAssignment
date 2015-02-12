@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'status_updates_controller/index'
 
+  post 'status_updates_controller/create'
+
   get 'users_controller/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
