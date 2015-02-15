@@ -7,22 +7,24 @@ class UsersControllerController < ApplicationController
 
 	def attempt_login
 		if params[:user][:user_name].present? && params[:user][:password].present?
-			found_user = User.where(:user_name => params[:user_name]).first
-			params.inspect
+			found_user = User.where(:user_name => params[:user][:user_name]).first
+
 			if found_user
-				authorized_user = found_user.authenticate(params[:password])
-				
+				authorized_user = found_user.authenticate(params[:user][:password])
 				if authorized_user
 				# mark user as logged in
-				session[:user_id] = @user.id 
-				session[:user_name] = @user.username
-				redirect_to(:controller => 'status_updates', :action => 'index')
+				session[:user_id] = authorized_user.id 
+				session[:user_name] = authorized_user.user_name
+				redirect_to(:controller => 'status_updates_controller', :action => 'index')
+				# this just insures we do not call final flash notice and final redirect if we 
+				# have already redirected to status updates
+				return true 
 				end
 			end
 		end
 		
 		flash[:notice] = "Invalid username and / or password."
-				redirect_to(:action => 'index')
+		redirect_to(:action => 'index')
 	end	
 
 	def sign_up
