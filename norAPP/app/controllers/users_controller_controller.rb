@@ -16,13 +16,11 @@ class UsersControllerController < ApplicationController
 				session[:user_id] = authorized_user.id 
 				session[:user_name] = authorized_user.user_name
 				redirect_to(:controller => 'status_updates_controller', :action => 'index')
-				# this just insures we do not call final flash notice and final redirect if we 
-				# have already redirected to status updates
+				# insures we do not call final flash notice and final redirect
 				return true 
 				end
 			end
 		end
-		
 		flash[:notice] = "Invalid username and / or password."
 		redirect_to(:action => 'index')
 	end	
@@ -37,7 +35,7 @@ class UsersControllerController < ApplicationController
 				
 			redirect_to(:controller => 'status_updates_controller', :action => 'index')
 		elsif
-			render(:action => 'index') #should this be redirect or render?? 
+			render(:action => 'index') 
 		end
 	end
 

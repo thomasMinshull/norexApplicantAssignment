@@ -1,34 +1,19 @@
 
 <%# needs a logout button %>
+<!-- needs a way to display errors if status isn't saved correctly -->
 
-<%# needs some way to set thisUser as the user who just logged in %>
-<%= form_for(:status_update, :url => {:action => 'create'}) do |f| %>
+<!-- status update form --> 
+
+<%= form_for @new_status, url: {action: "create"} do |f| %>
 	<table>
 		<tr>
-			<th>What's going on???</th>
-			<td><%=f.text_area(:new_status, :size =>'50x10', :maxlength => 500) %><td>
+			<th><%=f.label(:status, "What's going on???")%></th>
+			<td><%=f.text_field(:status) %><td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><%= f.submit 'Publish', :class => 'submit button' %></td>
 		</tr>
 	</table>
-	<div class="form-buttons">
-		<%= submit_tag("Publish") %>
-	</div>
 <% end %>
-
- 
-<% if @status_updates.exists? %>
-	<table>
-		<% @status_updates.each do |status_update| %>
-			<tr>
-				<td><%= status_update.user_name %></td>
-				<td><%= status_update.status %></td>
-				<td>
-					<% diffUser = true 
-					#diffUser = false if logged_in_user == status_update.user_name 
-					%>
-					<%= button_to( "edit", :action =>"edit", :disabled =>diffUser )%>
-				</td>
-			</tr>
-		<% end %>
-	</table>
-<% end %> 
 

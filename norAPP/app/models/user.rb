@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 
     attr_accessor :password_confirmation, :confirm_email
 
-
 	validates :user_name, :email, :confirm_email, :password,
 	:password_confirmation, presence: true
 
