@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
-  get 'status_updates_controller/index'
+  get 'updates/index'
 
-  post 'status_updates_controller/create'
+  post 'updates/create'
 
-  get 'users_controller/index'
+  get 'users/index'
 
-  post 'users_controller/attempt_login'
+  post 'users/attempt_login'
 
-  post 'users_controller/sign_up'
+  post 'users/sign_up'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

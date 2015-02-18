@@ -1,4 +1,4 @@
-class UsersControllerController < ApplicationController
+class UsersController < ApplicationController
 
 	def index 
 	@user = User.new
@@ -15,7 +15,7 @@ class UsersControllerController < ApplicationController
 				# mark user as logged in
 				session[:user_id] = authorized_user.id 
 				session[:user_name] = authorized_user.user_name
-				redirect_to(:controller => 'status_updates_controller', :action => 'index')
+				redirect_to(:controller => 'updates', :action => 'index')
 				# insures we do not call final flash notice and final redirect
 				return true 
 				end
@@ -33,7 +33,7 @@ class UsersControllerController < ApplicationController
 			session[:user_id] = @user.id #will this access the ID from the DB? 
 			session[:user_name] = @user.user_name # will this work??
 				
-			redirect_to(:controller => 'status_updates_controller', :action => 'index')
+			redirect_to(:controller => 'updates', :action => 'index')
 		elsif
 			render(:action => 'index') 
 		end

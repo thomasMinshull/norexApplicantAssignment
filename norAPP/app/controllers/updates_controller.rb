@@ -1,20 +1,20 @@
-class StatusUpdatesControllerController < ApplicationController
+class UpdatesController < ApplicationController
   
   before_action :confirm_logged_in, :except => [:logout]
 
   def index
     # To Do Pragination to make this more managable
-    @new_status = StatusUpdate.new
-    @status_list = StatusUpdate.order('created_at ASC')
+    @new_status = Update.new
+    @status_list = Update.order('created_at ASC')
   	render('index')
   end
 
   def create
 
-    status_update = StatusUpdate.new
-    status_update.users_id = current_user.id
-    status_update.status = status_params
-    status_update.save
+    update = Update.new
+    update.users_id = current_user.id
+    update.status = update_params
+    update.save
     redirect_to( :action => 'index' )
   end
 
@@ -38,8 +38,8 @@ private
    User.find(session[:user_id])
   end
 
-  def status_params
-  	params.require(:status_update).permit(:status)
+  def update_params
+  	params.require(:update).permit(:status)
   end
 end
 

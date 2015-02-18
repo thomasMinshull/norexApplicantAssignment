@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StatusUpdateTest < ActiveSupport::TestCase
+class UpdateTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

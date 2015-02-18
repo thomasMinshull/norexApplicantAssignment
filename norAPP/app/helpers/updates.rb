@@ -1,0 +1,2 @@
+module UpdatesControllerHelper
+end
