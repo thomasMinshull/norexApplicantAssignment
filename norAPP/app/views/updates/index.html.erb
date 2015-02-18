@@ -2,12 +2,12 @@
 <!-- logout button -->
 <%= button_to("logout", action: "logout")%>
 
-<!-- needs a way to display errors if status isn't saved correctly -->
-<% if @update.errors.any? %>
+<!-- Display's errors if status isn't saved correctly -->
+<% if @new_update.errors.any? %>
 	<div class="error_explanation">
 		<h2>The following errors prevented your status update from being published:</h2>
 		<ul>
-        	<% @update.errors.full_messages.each do |msg| %>
+        	<% @new_update.errors.full_messages.each do |msg| %>
         		<li><%= msg %></li>
 			<% end %>
 			
@@ -17,7 +17,7 @@
 
 <!-- status update form --> 
 
-<%= form_for @update, url: {action: "create"} do |f| %>
+<%= form_for @new_update, url: {action: "create"} do |f| %>
 	<table>
 		<tr>
 			<th><%=f.label(:status, "What's going on???")%></th>
@@ -30,3 +30,7 @@
 	</table>
 <% end %>
 
+<!-- Display list of all Updates --> 
+
+<h3>Status Updates</h3>
+<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
