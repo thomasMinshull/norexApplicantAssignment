@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  
+  post 'updates/logout'
+
   get 'updates/index'
 
   post 'updates/create'
 
   get 'users/index'
+
+  get 'users/attempt_login'
 
   post 'users/attempt_login'
 

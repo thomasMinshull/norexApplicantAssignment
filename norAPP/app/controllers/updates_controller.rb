@@ -27,7 +27,7 @@ class UpdatesController < ApplicationController
     session[:user_id] = nil 
     session[:user_name] = nil
     flash[:notice] = "logged out"
-    redirect_to(:action => "index")
+    redirect_to(:controller => 'users', :action => "index")
 
   end
 

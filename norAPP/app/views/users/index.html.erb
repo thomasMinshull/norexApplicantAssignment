@@ -1,5 +1,12 @@
 <% @page_title = "Norex Login" %>
 
+<!-- posts flash notices -->
+<div class = "flash notice">
+	<% if !flash[:notice].blank? %>
+		<p><%= flash[:notice] %></p>
+	<%end%>
+</div>
+
 <!-- posts errors -->
 <% if @user.errors.any? %>
 	<div class="error_explanation">
@@ -7,13 +14,12 @@
         	<% @user.errors.full_messages.each do |msg| %>
         		<li><%= msg %></li>
 			<% end %>
-			<% if !flash[:notice].blank? %>
-		 		<li><%= flash[:notice] %></li>
-			<%end%>
+			
 		</ul>
     </div>
 <% end %>
 
+<!-- log In -->
 <h2> Log In </h2>
 <div class="login">
 <%= form_for @user, url: {action: "attempt_login"}, html: {class: "form"} do |f| %>	

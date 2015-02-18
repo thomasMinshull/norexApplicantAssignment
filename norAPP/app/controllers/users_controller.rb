@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 	end
 
 	def attempt_login
+		@user = User.new(user_params) 
 		if params[:user][:user_name].present? && params[:user][:password].present?
 			found_user = User.where(:user_name => params[:user][:user_name]).first
 
@@ -21,8 +22,12 @@ class UsersController < ApplicationController
 				end
 			end
 		end
-		flash[:notice] = "Invalid username and / or password."
-		redirect_to(:action => 'index')
+		# calls function in model which sets an "Invalid username and / or password." error
+		@user.errors[:base] << "Invalid username and / or password."
+
+		#flash[:notice] = "Invalid username and / or password."
+		
+		render(:action => 'index')
 	end	
 
 	def sign_up
