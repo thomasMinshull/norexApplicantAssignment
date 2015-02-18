@@ -17,8 +17,4 @@ class User < ActiveRecord::Base
 	validates :email, length: {maximum: 100}
 	validates :user_name, length: {in: 5..50}
 
-def invalid_password
-	@user.errors[:base] << "Invalid username and / or password."
-end
-
 end

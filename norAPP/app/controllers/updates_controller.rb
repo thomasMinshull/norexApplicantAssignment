@@ -4,18 +4,24 @@ class UpdatesController < ApplicationController
 
   def index
     # To Do Pragination to make this more managable
-    @new_status = Update.new
-    @status_list = Update.order('created_at ASC')
-  	render('index')
+    @update = Update.new
+    
+    #@update_list = Update.order('created_at ASC')
   end
 
   def create
 
-    update = Update.new
-    update.users_id = current_user.id
-    update.status = update_params
-    update.save
-    redirect_to( :action => 'index' )
+    @update = Update.new(update_params)
+    @update.users_id = current_user.id
+
+    if @update.save
+      # status update text area will be blank and this update will be added to @update_list
+      redirect_to(:controller => 'updates', :action => 'index')
+    else
+      # status update text area will still contain last attempted update for editing
+      render( :action => 'index' )
+    end
+
   end
 
   def edit

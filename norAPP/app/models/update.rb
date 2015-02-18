@@ -1,6 +1,6 @@
 class Update < ActiveRecord::Base
 	belongs_to :user
 
-	validates_presence_of :status
-	validates_length_of :status, :maximum => 500
+	validates :status, presence: true
+	validates :status, length: {maximum: 500}
 end

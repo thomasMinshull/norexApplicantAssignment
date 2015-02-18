@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 
 	def index 
 	@user = User.new
-
 	end
 
 	def attempt_login
@@ -17,16 +16,13 @@ class UsersController < ApplicationController
 				session[:user_id] = authorized_user.id 
 				session[:user_name] = authorized_user.user_name
 				redirect_to(:controller => 'updates', :action => 'index')
-				# insures we do not call final flash notice and final redirect
+				# stops the function preventing the errors from being set and final render bellow
 				return true 
 				end
 			end
 		end
-		# calls function in model which sets an "Invalid username and / or password." error
+		# Sets an "Invalid username and / or password." error
 		@user.errors[:base] << "Invalid username and / or password."
-
-		#flash[:notice] = "Invalid username and / or password."
-		
 		render(:action => 'index')
 	end	
 
@@ -35,8 +31,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params) 
 		if @user.save
 			# mark user as logged in
-			session[:user_id] = @user.id #will this access the ID from the DB? 
-			session[:user_name] = @user.user_name # will this work??
+			session[:user_id] = @user.id 
+			session[:user_name] = @user.user_name 
 				
 			redirect_to(:controller => 'updates', :action => 'index')
 		elsif
