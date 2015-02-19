@@ -4,8 +4,10 @@ class UpdatesController < ApplicationController
 
   def index
     # To Do Pragination to make this more managable
-    @new_update = Update.new # was @update
+    @new_update = Update.new 
+    # would be more efficient to use join with User table to reduce the # of queries for user_name in the partial
     @updates = Update.order('created_at DESC')
+    @current_user = current_user
   end
 
   def create
@@ -18,6 +20,8 @@ class UpdatesController < ApplicationController
       redirect_to(:controller => 'updates', :action => 'index')
     else
       # used to populate @updates list in the render called directly bellow
+      # would be more efficient to use join with User table to reduce the # of queries for user_name in the partial
+      @current_user = current_user
       @updates = Update.order('created_at DESC')
       # status update text area will still contain last attempted update for editing
       render( :action => 'index' ) 

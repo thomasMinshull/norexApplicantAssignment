@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   post 'updates/create'
 
+  get 'updates/edit'
+
   get 'users/index'
 
   get 'users/attempt_login'

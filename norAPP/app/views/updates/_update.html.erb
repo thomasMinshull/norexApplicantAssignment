@@ -1,6 +1,10 @@
 <tr>
-<th>User:</th>
-<td><%=update.user.user_name%></td>
-<th>Update:</th>
-<td><%= update.status %></td>
+	<th>User:</th>
+	<td><%=update.user.user_name%></td>
+	<th>Update:</th>
+	<td><%= update.status %></td>
+	<td><% if @current_user.id == update.user.id %>
+			<%= button_to("edit", action: "edit") %>
+		<% end %>
+	</td>
 </tr>
