@@ -33,4 +33,6 @@
 <!-- Display list of all Updates --> 
 
 <h3>Status Updates</h3>
-<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
+<table> 
+	<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
+</table>

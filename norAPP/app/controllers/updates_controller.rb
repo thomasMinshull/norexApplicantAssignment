@@ -11,7 +11,7 @@ class UpdatesController < ApplicationController
   def create
 
     @new_update = Update.new(update_params)
-    @new_update.users_id = current_user.id
+    @new_update.user_id = current_user.id
 
     if @new_update.save
       # status update text area will be blank and this update will be added to @updates list

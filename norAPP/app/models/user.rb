@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	has_secure_password
-	has_many :status_updates
+	has_many :updates
 
     attr_accessor :password_confirmation, :confirm_email
 
