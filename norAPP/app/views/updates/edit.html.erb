@@ -1,0 +1,26 @@
+
+<!-- logout button -->
+<%= button_to("logout", action: "logout")%>
+
+<!-- edit field -->
+
+<%= form_for @edit_update, url: {action: "update"} do |f| %>
+	<table>
+		<tr>
+			<th><%=f.label(:status, "What's going on???")%></th>
+			<td><%=f.text_area(:status, size:"50x5") %><td>
+			<%= f.hidden_field :id %>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><%= f.submit 'Publish Changes', :class => 'submit button' %></td>
+		</tr>
+	</table>
+<% end %>
+
+<!-- Display list of all Updates --> 
+
+<h3>Status Updates</h3>
+<table> 
+	<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
+</table>

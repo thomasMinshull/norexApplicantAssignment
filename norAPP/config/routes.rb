@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   post 'updates/create'
 
+  post 'updates/edit'
+
   get 'updates/edit'
 
   get 'users/index'
