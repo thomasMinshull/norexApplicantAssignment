@@ -2,6 +2,20 @@
 <!-- logout button -->
 <%= button_to("logout", action: "logout")%>
 
+<!-- displays posible errors -->
+<!-- posts errors -->
+<% if !@edit_update.nil? %>
+	<% if @edit_update.errors.any? %>
+		<div class="error_explanation">
+			<ul>
+        		<% @edit_update.errors.full_messages.each do |msg| %>
+        			<li><%= msg %></li>
+				<% end %>
+			</ul>
+	    </div>
+	<% end %>
+<% end %>
+
 <!-- edit field -->
 
 <%= form_for @edit_update, url: {action: "update"} do |f| %>

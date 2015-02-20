@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'updates/edit'
 
+  patch 'updates/update'
+
   get 'users/index'
 
   get 'users/attempt_login'

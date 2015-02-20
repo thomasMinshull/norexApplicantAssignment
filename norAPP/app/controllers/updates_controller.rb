@@ -1,5 +1,5 @@
 class UpdatesController < ApplicationController
-  
+
   before_action :confirm_logged_in, :except => [:logout]
 
   def index
@@ -8,6 +8,7 @@ class UpdatesController < ApplicationController
     # would be more efficient to use join with User table to reduce the # of queries for user_name in the partial
     @updates = Update.order('created_at DESC')
     @current_user = current_user
+
   end
 
   def create
@@ -30,7 +31,29 @@ class UpdatesController < ApplicationController
   end
 
   def edit
-    
+    @updates = Update.order('created_at DESC')
+    @current_user = current_user
+
+    if current_user.id != params[:data][:edit_updated_user_id].to_i
+      
+      @edit_update = Update.find(params[:data][:edited_update_id].to_i)
+      render(:action => 'edit')
+    else
+      @new_update = Update.new 
+      render(:action => 'index')
+    end 
+  end
+
+  def update
+    @edit_update = Update.find(params[:update][:id])
+    @edit_update.status = params[:update][:status] #This is suseptible to SQL injection must correct this 
+    if @edit_update.save
+      redirect_to(:controller => 'updates', :action => 'index')
+    else
+      @current_user = current_user
+      @updates = Update.order('created_at DESC')
+      render('edit')
+    end
   end
 
   def logout 
@@ -52,6 +75,7 @@ private
   def update_params
   	params.require(:update).permit(:status)
   end
+
 
 end
 
