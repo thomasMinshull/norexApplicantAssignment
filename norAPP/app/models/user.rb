@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
     attr_accessor :password_confirmation, :confirm_email
 
-    # not validates pressnce of password automatically handled by has_secure_password
+    # note validates pressnce of password automatically handled by has_secure_password
 	validates :user_name, :email, :confirm_email, :password_confirmation, presence: true
 
 	validates :user_name, uniqueness: true

@@ -3,7 +3,7 @@
 <div class="logout">
 	<%= button_to("logout", action: "logout")%>
 </div>
-<!-- Display's errors if status isn't saved correctly -->
+<!-- posts errors -->
 <% if @new_update.errors.any? %>
 	<div class="error_explanation">
         <% @new_update.errors.full_messages.each do |msg| %>

@@ -3,9 +3,8 @@ class UpdatesController < ApplicationController
   before_action :confirm_logged_in, :except => [:logout]
 
   def index
-    # To Do Pragination to make this more managable
+    
     @new_update = Update.new 
-    # would be more efficient to use join with User table to reduce the # of queries for user_name in the partial
     @updates = Update.order('created_at DESC')
     @current_user = current_user
 
@@ -17,25 +16,25 @@ class UpdatesController < ApplicationController
     @new_update.user_id = current_user.id
 
     if @new_update.save
-      # status update text area will be blank and this update will be added to @updates list
+      # redirect insures update text area will be blank and this update is added to update list
       redirect_to(:controller => 'updates', :action => 'index')
     else
-      # used to populate @updates list in the render called directly bellow
-      # would be more efficient to use join with User table to reduce the # of queries for user_name in the partial
       @current_user = current_user
+      # used to populate @updates list in the render called directly bellow
       @updates = Update.order('created_at DESC')
-      # status update text area will still contain last attempted update for editing
+      # render insures status update text area will still contain last attempt
       render( :action => 'index' ) 
     end
-
   end
 
   def edit
     @updates = Update.order('created_at DESC')
     @current_user = current_user
 
-    if current_user.id != params[:data][:edit_updated_user_id].to_i
-      
+    # Prevents someone else editing the update by passing alternative 
+    # paramaters by checking user id agains current user id originally 
+    # confirmed in session data via login 
+    if current_user.id == params[:data][:edited_update_user_id].to_i
       @edit_update = Update.find(params[:data][:edited_update_id].to_i)
       render(:action => 'edit')
     else
@@ -45,8 +44,9 @@ class UpdatesController < ApplicationController
   end
 
   def update
-    @edit_update = Update.find(params[:update][:id])
-    @edit_update.status = params[:update][:status] #This is suseptible to SQL injection must correct this 
+    @edit_update = Update.find(params[:update][:id].to_i)
+    # satizes input so SQL injection isn't a concern
+    @edit_update.status = update_params[:status] 
     if @edit_update.save
       redirect_to(:controller => 'updates', :action => 'index')
     else
@@ -62,7 +62,6 @@ class UpdatesController < ApplicationController
     session[:user_name] = nil
     flash[:notice] = "logged out"
     redirect_to(:controller => 'users', :action => "index")
-
   end
 
   

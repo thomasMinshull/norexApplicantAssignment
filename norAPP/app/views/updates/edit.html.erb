@@ -1,19 +1,18 @@
-
 <!-- logout button -->
 <div class="logout">
 	<%= button_to("logout", action: "logout")%>
 </div>
-<!-- displays posible errors -->
+
 <!-- posts errors -->
-<% if !@edit_update.nil? %>
-	<% if @edit_update.errors.any? %>
-		<div class="error_explanation">
-        	<% @edit_update.errors.full_messages.each do |msg| %>
-        		<p class="error_explanation"><%= msg %></p>
-			<% end %>
-	    </div>
-	<% end %>
+
+<% if @edit_update.errors.any? %>
+	<div class="error_explanation">
+       	<% @edit_update.errors.full_messages.each do |msg| %>
+       		<p class="error_explanation"><%= msg %></p>
+		<% end %>
+    </div>
 <% end %>
+
 
 <!-- edit field -->
 <div class="update_field">
