@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  
-  post 'updates/logout'
+ 
 
-  get 'updates/index'
+  patch 'updates/update'
+
+  post 'updates/logout'
 
   post 'updates/create'
 
@@ -10,11 +11,17 @@ Rails.application.routes.draw do
 
   get 'updates/edit'
 
-  patch 'updates/update'
+  get 'updates/index'
+
+  get 'updates/create'
+
+  get 'updates/update'
+
+  get 'updates/logout'
 
   get 'users/index'
 
-  get 'users/attempt_login'
+  #get 'users/attempt_login'
 
   post 'users/attempt_login'
 
