@@ -1,3 +1,44 @@
 // Place all the styles related to the StatusUpdatesController controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.update_field {
+	position: fixed;
+	top: 2em;
+
+	border-style: groove;
+    border-width: 0.25em;
+
+	margin-top: 3em;
+    margin-bottom: 3em;
+    margin-right: 10em;
+    margin-left: 10em;
+	
+	padding: 2em;
+
+	background-color: #00BB22;
+}
+
+.update_list {
+	position: absolute;
+	left: 5em;
+	right: 5em;
+	top: 14em;
+
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2em;
+	z-index: -1;
+}
+
+h3 {
+	text-align: center;
+	font-size: 2em;
+	font-style: oblique;
+}
+
+.logout {
+	position: absolute;
+	right: 2.5em;
+	top: 1em;
+}

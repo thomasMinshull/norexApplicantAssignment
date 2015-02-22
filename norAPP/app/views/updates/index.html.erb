@@ -1,38 +1,36 @@
 
 <!-- logout button -->
-<%= button_to("logout", action: "logout")%>
-
+<div class="logout">
+	<%= button_to("logout", action: "logout")%>
+</div>
 <!-- Display's errors if status isn't saved correctly -->
 <% if @new_update.errors.any? %>
 	<div class="error_explanation">
-		<h2>The following errors prevented your status update from being published:</h2>
-		<ul>
-        	<% @new_update.errors.full_messages.each do |msg| %>
-        		<li><%= msg %></li>
-			<% end %>
-			
-		</ul>
+        <% @new_update.errors.full_messages.each do |msg| %>
+       		<p class="error_explanation"><%= msg %></p>
+		<% end %>
     </div>
 <% end %>
 
 <!-- status update form --> 
-
-<%= form_for @new_update, url: {action: "create"} do |f| %>
-	<table>
-		<tr>
-			<th><%=f.label(:status, "What's going on???")%></th>
-			<td><%=f.text_area(:status, size:"50x5") %><td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><%= f.submit 'Publish', :class => 'submit button' %></td>
-		</tr>
-	</table>
-<% end %>
-
+<div class="update_field">
+	<%= form_for @new_update, url: {action: "create"} do |f| %>
+		<table class"update_form">
+			<tr>
+				<th><%=f.label(:status, "What's going on???")%></th>
+				<td><%=f.text_area(:status, size:"50x5") %><td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><%= f.submit 'Publish', :class => 'submit button' %></td>
+			</tr>
+		</table>
+	<% end %>
+</div>
 <!-- Display list of all Updates --> 
-
-<h3>Status Updates</h3>
-<table> 
-	<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
-</table>
+<div class="update_list">
+	<h3>Status Updates</h3>
+	<table> 
+		<%= render partial: "update", collection: @updates || "Your update will be the first update" %>
+	</table>
+</div>

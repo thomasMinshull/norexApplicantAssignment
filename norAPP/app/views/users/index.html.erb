@@ -1,77 +1,75 @@
 <% @page_title = "Norex Login" %>
+<h1> Welcome to NorApp </h1> 
 
 <!-- posts flash notices -->
-<div class = "flash notice">
+<div class = "flash_notice">
 	<% if !flash[:notice].blank? %>
-		<p><%= flash[:notice] %></p>
+		<p class = "flash_notice"><strong><%= flash[:notice] %><strong></p>
 	<%end%>
 </div>
 
 <!-- posts errors -->
 <% if @user.errors.any? %>
 	<div class="error_explanation">
-		<ul>
-        	<% @user.errors.full_messages.each do |msg| %>
-        		<li><%= msg %></li>
-			<% end %>
-			
-		</ul>
+        <% @user.errors.full_messages.each do |msg| %>
+       		<p class="error_explanation"><%= msg %></p>
+		<% end %>
     </div>
 <% end %>
 
 <!-- log In -->
-<h2> Log In </h2>
 <div class="login">
-<%= form_for @user, url: {action: "attempt_login"}, html: {class: "form"} do |f| %>	
-	<table summary= "login">
-		<tr>
-			<th><%= f.label(:user_name, "User Name") %> </th> 
-			<td><%= f.text_field(:user_name) %> </td>
-		</tr>
-		<tr>
-			<th><%= f.label(:password) %></th>
-			<td><%= f.password_field(:password) %></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><%= f.submit 'Log In', :class => 'submit button' %></td>
-		</tr>
-	</table>
-<% end %>
+	<h2> Log In </h2>
+	<%= form_for @user, url: {action: "attempt_login"}, html: {class: "form"} do |f| %>	
+		<table summary= "login">
+			<tr>
+				<th><%= f.label(:user_name, "User Name") %> </th> 
+				<td><%= f.text_field(:user_name) %> </td>
+			</tr>
+			<tr>
+				<th><%= f.label(:password) %></th>
+				<td><%= f.password_field(:password) %></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><%= f.submit 'Log In', :class => 'submit button' %></td>
+			</tr>
+		</table>
+	<% end %>
 </div>
 
-<h2> Sign Up </h2>
-<div class="sign up">
-	
 
-<%= form_for @user, url: {action: "sign_up"}, html: {class: "form"} do |f| %>
-	<table summary= "Sign Up">
-		<tr>
-			<th><%= f.label(:user_name, "User Name")%></th>
-			<td><%= f.text_field( :user_name )%></td>
-		</tr>
-		<tr>
-			<th><%= f.label( :password )%></th>
-			<td><%= f.password_field( :password )%><td>
-		</tr>
-		<tr>
-			<th><%= f.label( :password_confirmation )%></th>
-			<td><%= f.password_field( :password_confirmation )%><td>
-		</tr>
+<div class="sign_up">
+	<h2> Sign Up </h2>
 
-		<tr>
-			<th><%= f.label( :email )%></th>
-			<td><%= f.email_field( :email )%><td>
-		</tr>
+	<%= form_for @user, url: {action: "sign_up"}, html: {class: "form"} do |f| %>
+		<table summary= "Sign Up">
+			<tr>
+				<th><%= f.label(:user_name, "User Name")%></th>
+				<td><%= f.text_field( :user_name )%></td>
+			</tr>
+			<tr>
+				<th><%= f.label( :password )%></th>
+				<td><%= f.password_field( :password )%><td>
+			</tr>
+			<tr>
+				<th><%= f.label( :password_confirmation )%></th>
+				<td><%= f.password_field( :password_confirmation )%><td>
+			</tr>
 
-		<tr>
-			<th><%= f.label(:confirm_email)%></th>
-			<td><%= f.email_field(:confirm_email)%></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td><%= f.submit 'Sign Up', :class => 'submit button' %></td>
-		</tr>
-	</table>
-<% end %>
+			<tr>
+				<th><%= f.label( :email )%></th>
+				<td><%= f.email_field( :email )%><td>
+			</tr>
 
+			<tr>
+				<th><%= f.label(:confirm_email)%></th>
+				<td><%= f.email_field(:confirm_email)%></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><%= f.submit 'Sign Up', :class => 'submit button' %></td>
+			</tr>
+		</table>
+	<% end %>
+</div>

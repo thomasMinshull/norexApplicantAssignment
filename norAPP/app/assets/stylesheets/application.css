@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+	background-color: #00c4de;
+}
+
+
+p.error_explanation {
+
+	margin-top: 0px;
+	margin-bottom: 0px; 
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-family: Book Antiqua;
+	text-align: center;
+    color: white;
+    text-shadow: 3px 3px black;
+	font-size: 125%
+
+}
