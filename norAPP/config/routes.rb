@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   get 'users/index'
 
+  post 'updates/delete'
+  
   #get 'users/attempt_login'
 
   post 'users/attempt_login'

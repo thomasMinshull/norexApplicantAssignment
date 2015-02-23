@@ -32,3 +32,11 @@ p.error_explanation {
 	font-size: 125%
 
 }
+
+
+.error_explanation {
+	position: relative;
+	left: 8.5em;
+	width: 35em;
+	text-align: center;
+}

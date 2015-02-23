@@ -6,7 +6,7 @@
 <!-- posts errors -->
 
 <% if @edit_update.errors.any? %>
-	<div class="error_explanation">
+	<div >
        	<% @edit_update.errors.full_messages.each do |msg| %>
        		<p class="error_explanation"><%= msg %></p>
 		<% end %>

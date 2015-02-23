@@ -4,8 +4,10 @@
 	<td><%=update.user.user_name%></td>
 	<th>Update:</th>
 	<td class="updates"><%= update.status %></td>
-	<td><% if @current_user.id == update.user.id %>
-			<%= button_to("edit", action: "edit", data: {edited_update_id: update.id, edited_update_user_id: update.user.id}) %>
-		<% end %>
-	</td>
+	<% if @current_user.id == update.user.id %>
+		<td><%= button_to("edit", action: "edit", data: {edited_update_id: update.id, edited_update_user_id: update.user.id}) %>
+		</td>
+		<td><%= button_to("delete", action: "delete", data: {edited_update_id: update.id, edited_update_user_id: update.user.id}) %>
+		</td>
+	<% end %>	
 </tr>

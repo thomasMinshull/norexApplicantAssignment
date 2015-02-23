@@ -31,11 +31,11 @@ class UpdatesController < ApplicationController
     @updates = Update.order('created_at DESC')
     @current_user = current_user
 
+    @edit_update = Update.find(params[:data][:edited_update_id].to_i)
     # Prevents someone else editing the update by passing alternative 
     # paramaters by checking user id agains current user id originally 
     # confirmed in session data via login 
-    if current_user.id == params[:data][:edited_update_user_id].to_i
-      @edit_update = Update.find(params[:data][:edited_update_id].to_i)
+    if current_user.id == @edit_update.user_id
       render(:action => 'edit')
     else
       @new_update = Update.new 
@@ -45,14 +45,30 @@ class UpdatesController < ApplicationController
 
   def update
     @edit_update = Update.find(params[:update][:id].to_i)
-    # satizes input so SQL injection isn't a concern
-    @edit_update.status = update_params[:status] 
-    if @edit_update.save
+    
+    #Prevents someone else form updating by passing in alternative params
+    if current_user.id == @edit_update.user_id
+      # satizes input so SQL injection isn't a concern
+      @edit_update.status = update_params[:status] 
+      if @edit_update.save
+        redirect_to(:controller => 'updates', :action => 'index')
+      else
+        @current_user = current_user
+        @updates = Update.order('created_at DESC')
+        render('edit')
+      end
+    else 
+      redirect_to('index')  
+    end
+  end
+
+  def delete
+    @edit_update = Update.find(params[:data][:edited_update_id].to_i)
+    if current_user.id == @edit_update.user_id
+      @edit_update.destroy
       redirect_to(:controller => 'updates', :action => 'index')
-    else
-      @current_user = current_user
-      @updates = Update.order('created_at DESC')
-      render('edit')
+    else 
+      redirect_to(:controller => 'updates', :action => 'index')
     end
   end
 
