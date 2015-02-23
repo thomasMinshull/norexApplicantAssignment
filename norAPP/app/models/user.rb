@@ -15,6 +15,6 @@ class User < ActiveRecord::Base
 	validates :email, format: { with: /\A[A-Z0-9._%+-]+@[a-z9-9.-]+\.[a-z]{2,4}\Z/i, message: "invalid email"}
 	
 	validates :email, length: {maximum: 100}
-	validates :user_name, length: {in: 5..50}
+	validates :user_name, length: {in: 5..25}
 
 end

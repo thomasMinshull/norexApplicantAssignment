@@ -3,7 +3,7 @@
 	<th>User:</th>
 	<td><%=update.user.user_name%></td>
 	<th>Update:</th>
-	<td><%= update.status %></td>
+	<td class="updates"><%= update.status %></td>
 	<td><% if @current_user.id == update.user.id %>
 			<%= button_to("edit", action: "edit", data: {edited_update_id: update.id, edited_update_user_id: update.user.id}) %>
 		<% end %>
